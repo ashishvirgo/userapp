@@ -8,4 +8,14 @@ const getUsers=async(req,res)=>{
         res.status(500).json({message: err.message})
     }
 }
-module.exports={getUsers}
+const getUser=async(req,res)=>{
+    try{
+        const email=req.params.email;
+     const user=await User.find({email});
+     res.status(200).json(user);
+    }
+    catch(err){
+        res.status(500).json({message: err.message})
+    }
+}
+module.exports={getUsers,getUser}
