@@ -41,4 +41,14 @@ const editUser=async(req,res)=>{
         res.status(500).json({message: err.message})
     }
 }
-module.exports={getUsers,getUser,createUser,editUser}
+const deleteUser=async(req,res)=>{
+    try{
+        const email=req.params.email;
+     const deleteduser=await User.deleteOne({email});
+     res.status(200).json(deleteduser);
+    }
+    catch(err){
+        res.status(500).json({message: err.message})
+    }
+}
+module.exports={getUsers,getUser,createUser,editUser,deleteUser}
